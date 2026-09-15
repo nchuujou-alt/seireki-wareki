@@ -5,8 +5,11 @@
 ## プロジェクト概要
 
 - 目的: 西暦⇔和暦の変換機能を提供する
-- 現状: プロジェクト初期段階(ディレクトリは空、Git未初期化)
-- 技術スタックや詳細な仕様は開発が進み次第この節に追記する
+- 技術スタック: React + Vite
+- リポジトリ: https://github.com/nchuujou-alt/seireki-wareki
+- 公開URL(GitHub Pages): https://nchuujou-alt.github.io/seireki-wareki/
+  - `main`ブランチへのpushで `.github/workflows/deploy.yml` が自動ビルド・デプロイする
+  - `vite.config.js` の `base` はリポジトリ名(`/seireki-wareki/`)に合わせてあるため、リポジトリ名を変更する場合は要修正
 
 ## Git運用ルール
 
