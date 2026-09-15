@@ -73,6 +73,12 @@ h1 {
   color: #c0392b;
 }
 
+.days-info {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: #c2477a;
+}
+
 .era-table {
   width: 100%;
   border-collapse: collapse;

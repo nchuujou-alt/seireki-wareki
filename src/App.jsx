@@ -1,23 +1,23 @@
 import { useMemo, useState } from 'react'
-import { ERAS, MIN_YEAR, toWareki } from './eras.js'
+import { ERAS, MIN_YEAR, toWareki, daysInYear } from './eras.js'
 import './App.css'
 
 function App() {
   const [input, setInput] = useState('')
 
-  const { result, error } = useMemo(() => {
-    if (input.trim() === '') return { result: null, error: null }
+  const { result, error, days } = useMemo(() => {
+    if (input.trim() === '') return { result: null, error: null, days: null }
 
     if (!/^\d+$/.test(input.trim())) {
-      return { result: null, error: '半角数字で西暦を入力してください' }
+      return { result: null, error: '半角数字で西暦を入力してください', days: null }
     }
 
     const year = Number(input.trim())
     if (year < MIN_YEAR) {
-      return { result: null, error: `${MIN_YEAR}年以降の西暦を入力してください` }
+      return { result: null, error: `${MIN_YEAR}年以降の西暦を入力してください`, days: null }
     }
 
-    return { result: toWareki(year), error: null }
+    return { result: toWareki(year), error: null, days: daysInYear(year) }
   }, [input])
 
   return (
@@ -41,6 +41,7 @@ function App() {
             {error ? error : result ?? '―'}
           </span>
         </div>
+        {days !== null && <p className="days-info">その年は{days}日です</p>}
       </div>
 
       <table className="era-table">

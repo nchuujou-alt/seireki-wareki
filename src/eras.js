@@ -18,3 +18,13 @@ export function toWareki(year) {
   const n = year - era.start + 1
   return `${era.name}${n === 1 ? '元' : n}年`
 }
+
+// うるう年かどうかを判定する
+export function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+}
+
+// その年の日数(365 または 366)を返す
+export function daysInYear(year) {
+  return isLeapYear(year) ? 366 : 365
+}
