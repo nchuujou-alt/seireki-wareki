@@ -73,8 +73,9 @@ h1 {
   color: #c0392b;
 }
 
-.days-info {
-  margin: 0.6rem 0 0;
+.days-info,
+.population-info {
+  margin: 0.4rem 0 0;
   font-size: 0.9rem;
   color: #c2477a;
 }

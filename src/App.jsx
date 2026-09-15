@@ -1,23 +1,29 @@
 import { useMemo, useState } from 'react'
 import { ERAS, MIN_YEAR, toWareki, daysInYear } from './eras.js'
+import { getPopulation } from './population.js'
 import './App.css'
 
 function App() {
   const [input, setInput] = useState('')
 
-  const { result, error, days } = useMemo(() => {
-    if (input.trim() === '') return { result: null, error: null, days: null }
+  const { result, error, days, population } = useMemo(() => {
+    if (input.trim() === '') return { result: null, error: null, days: null, population: null }
 
     if (!/^\d+$/.test(input.trim())) {
-      return { result: null, error: '半角数字で西暦を入力してください', days: null }
+      return { result: null, error: '半角数字で西暦を入力してください', days: null, population: null }
     }
 
     const year = Number(input.trim())
     if (year < MIN_YEAR) {
-      return { result: null, error: `${MIN_YEAR}年以降の西暦を入力してください`, days: null }
+      return { result: null, error: `${MIN_YEAR}年以降の西暦を入力してください`, days: null, population: null }
     }
 
-    return { result: toWareki(year), error: null, days: daysInYear(year) }
+    return {
+      result: toWareki(year),
+      error: null,
+      days: daysInYear(year),
+      population: getPopulation(year),
+    }
   }, [input])
 
   return (
@@ -42,6 +48,9 @@ function App() {
           </span>
         </div>
         {days !== null && <p className="days-info">その年は{days}日です</p>}
+        {days !== null && (
+          <p className="population-info">日本の人口: {population ?? '不明'}</p>
+        )}
       </div>
 
       <table className="era-table">
